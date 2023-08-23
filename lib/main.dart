@@ -15,7 +15,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Shipyard',
+      title: 'docknest',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: kColorScheme,
@@ -36,7 +36,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: const ShipyardsScreen(),
+      home: const docknestsScreen(),
     );
   }
 }

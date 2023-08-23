@@ -1,4 +1,4 @@
-package com.example.shipyard
+package com.example.docknest
 
 import io.flutter.embedding.android.FlutterActivity
 

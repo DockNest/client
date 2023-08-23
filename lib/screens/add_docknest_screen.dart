@@ -46,10 +46,10 @@ class AddDocknestScreen extends ConsumerWidget {
 
       _formKey.currentState!.save();
       if (editing) {
-        ref.read(docknestsProvider.notifier).updateShipyard(
+        ref.read(docknestsProvider.notifier).updatedocknest(
             Docknest(ip: ip, name: name, port: port, id: docknestToEdit!.id));
       } else {
-        ref.read(docknestsProvider.notifier).addShipyard(name, ip, port);
+        ref.read(docknestsProvider.notifier).adddocknest(name, ip, port);
       }
 
       Navigator.of(context).pop();

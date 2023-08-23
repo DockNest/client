@@ -17,22 +17,22 @@ class DocknestsNotifier extends StateNotifier<Set<Docknest>> {
         onCreate: (db, version) => db.execute(createTableDdl), version: 1);
   }
 
-  void addShipyard(String name, String ip, String port) async {
+  void adddocknest(String name, String ip, String port) async {
     final db = await getDatabase();
 
     final docknest = Docknest(name: name, ip: ip, port: port);
 
     db.insert(docknestTbl, {
-      ShipyardField.id.str: docknest.id,
-      ShipyardField.name.str: docknest.name,
-      ShipyardField.ip.str: docknest.ip,
-      ShipyardField.port.str: docknest.port
+      DocknestField.id.str: docknest.id,
+      DocknestField.name.str: docknest.name,
+      DocknestField.ip.str: docknest.ip,
+      DocknestField.port.str: docknest.port
     });
 
     state = {...state, docknest};
   }
 
-  void updateShipyard(Docknest docknest) async {
+  void updatedocknest(Docknest docknest) async {
     final db = await getDatabase();
 
     final stateCopy = {...state};
@@ -44,20 +44,20 @@ class DocknestsNotifier extends StateNotifier<Set<Docknest>> {
 
 
     db.update(docknestTbl, {
-      ShipyardField.name.str: docknest.name,
-      ShipyardField.ip.str: docknest.ip,
-      ShipyardField.port.str: docknest.port
-    }, where: '${ShipyardField.id.str} = ?',
+      DocknestField.name.str: docknest.name,
+      DocknestField.ip.str: docknest.ip,
+      DocknestField.port.str: docknest.port
+    }, where: '${DocknestField.id.str} = ?',
       whereArgs: [docknest.id],
     );
   }
 
-  void removeShipyard(Docknest docknest) async {
+  void removedocknest(Docknest docknest) async {
     final db = await getDatabase();
 
     db.delete(
       docknestTbl,
-      where: '${ShipyardField.id.str} = ?',
+      where: '${DocknestField.id.str} = ?',
       whereArgs: [docknest.id],
     );
 
@@ -68,17 +68,17 @@ class DocknestsNotifier extends StateNotifier<Set<Docknest>> {
     state = stateCopy;
   }
 
-  Future<void> loadAllShipyards() async {
+  Future<void> loadAlldocknests() async {
     final db = await getDatabase();
     final rows = await db.query(docknestTbl);
     final docknests = rows
         .map(
           (row) =>
           Docknest(
-            ip: row[ShipyardField.ip.str] as String,
-            name: row[ShipyardField.name.str] as String,
-            port: row[ShipyardField.port.str] as String,
-            id: row[ShipyardField.id.str] as String,
+            ip: row[DocknestField.ip.str] as String,
+            name: row[DocknestField.name.str] as String,
+            port: row[DocknestField.port.str] as String,
+            id: row[DocknestField.id.str] as String,
           ),
     )
         .toSet();

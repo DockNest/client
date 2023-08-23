@@ -1,6 +1,6 @@
 {
-    "name": "shipyard",
-    "short_name": "shipyard",
+    "name": "docknest",
+    "short_name": "docknest",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -4,11 +4,12 @@ import 'package:docknest/models/docker/container.dart';
 
 class ApiService {
   final _client = http.Client();
+  static const path = "docknest";
 
   Future<bool> testConnection(String ip, String port) async {
     try {
       var response = await _client.post(
-        Uri.http('$ip:$port', 'docknest'),
+        Uri.http('$ip:$port', path),
         body: convert.jsonEncode({"test": true}),
       );
 
@@ -26,7 +27,7 @@ class ApiService {
       String ip, port, String containerId, int tail) async {
     try {
       var response = await _client.post(
-        Uri.http('$ip:$port', 'docknest'),
+        Uri.http('$ip:$port', path),
         body: convert.jsonEncode({
           "command": "run",
           "dockerCmd": "logs",
@@ -36,7 +37,6 @@ class ApiService {
       );
 
       if (response.statusCode == 200) {
-        print(response.statusCode);
         return List<String>.from(convert.jsonDecode(response.body));
       }
 
@@ -49,7 +49,7 @@ class ApiService {
   Future<List<DockerContainer>> getContainers(String ip, port) async {
     try {
       var response = await _client.post(
-        Uri.http('$ip:$port', 'docknest'),
+        Uri.http('$ip:$port', path),
         body: convert.jsonEncode({"command": "run", "dockerCmd": "ps"}),
       );
 

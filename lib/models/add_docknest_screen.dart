@@ -19,13 +19,13 @@ class Docknest {
   int get hashCode => id.hashCode;
 }
 
-enum ShipyardField {
+enum DocknestField {
   ip('ip'),
   name('name'),
   port('port'),
   id('id');
 
-  const ShipyardField(this.str);
+  const DocknestField(this.str);
 
   final String str;
 }

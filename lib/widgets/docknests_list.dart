@@ -8,16 +8,16 @@ class DocknestsList extends ConsumerStatefulWidget {
   const DocknestsList({super.key});
 
   @override
-  ConsumerState<DocknestsList> createState() => _ShipyardsListState();
+  ConsumerState<DocknestsList> createState() => _docknestsListState();
 }
 
-class _ShipyardsListState extends ConsumerState<DocknestsList> {
+class _docknestsListState extends ConsumerState<DocknestsList> {
   late Future<void> _docknestsFuture;
 
   @override
   void initState() {
     super.initState();
-    _docknestsFuture = ref.read(docknestsProvider.notifier).loadAllShipyards();
+    _docknestsFuture = ref.read(docknestsProvider.notifier).loadAlldocknests();
   }
 
   @override
@@ -41,7 +41,7 @@ class _ShipyardsListState extends ConsumerState<DocknestsList> {
                   key: ValueKey(index),
                   onDismissed: (dir) => ref
                       .read(docknestsProvider.notifier)
-                      .removeShipyard(docknests[index]),
+                      .removedocknest(docknests[index]),
                   child: ListTile(
                     title: Text(docknests[index].name),
                     leading: Icon(Icons.directions_boat),
